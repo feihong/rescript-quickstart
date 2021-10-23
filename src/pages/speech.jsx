@@ -20,14 +20,14 @@ export default function () {
       setResult(evt.results[0][0])
     })
 
-  return <div> {recognition == null
+  return <div> {recognition === null
     ? "Speech recognition is not supported on this browser"
     : <div>
         <button className="bg-blue-500 hover:bg-blue-700 text-white rounded p-1"
           onClick={_ => {
             setResult(null)
             recognition.start()}}> {"Start recognition"} </button>
-        {result !== null && <div> {`Transcript: ${result.transcript}, Confidence: ${result.confidence}`} </div>}
+        {result && <div> {`Transcript: ${result.transcript}, Confidence: ${result.confidence}`} </div>}
       </div>}
   </div>
 }

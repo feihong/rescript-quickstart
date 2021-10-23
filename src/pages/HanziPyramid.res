@@ -33,6 +33,10 @@ let make = () => {
         {"Generate"->RR.s}
       </button>
     </div>
-    {lines->Array.map(line => <p className="text-3xl"> {line->RR.s} </p>)->RR.array}
+    {lines
+    ->Array.mapWithIndex((i, line) =>
+      <p key={i->string_of_int} className="text-3xl"> {line->RR.s} </p>
+    )
+    ->RR.array}
   </div>
 }

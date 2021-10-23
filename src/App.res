@@ -7,6 +7,7 @@ let make = () => {
     | Main => <Main />
     | HanziPyramid => <HanziPyramid />
     | SpeechRecognition => <SpeechRecognition />
+    | SpeechSynthesis => <SpeechSynthesis />
     | NotFound => <NotFound />
     }}
   </div>

@@ -11,18 +11,24 @@ function useRoute(param) {
   switch (match.hd) {
     case "hanzi-pyramid" :
         if (match.tl) {
-          return /* NotFound */3;
+          return /* NotFound */4;
         } else {
           return /* HanziPyramid */1;
         }
     case "speech-recognition" :
         if (match.tl) {
-          return /* NotFound */3;
+          return /* NotFound */4;
         } else {
           return /* SpeechRecognition */2;
         }
+    case "speech-synthesis" :
+        if (match.tl) {
+          return /* NotFound */4;
+        } else {
+          return /* SpeechSynthesis */3;
+        }
     default:
-      return /* NotFound */3;
+      return /* NotFound */4;
   }
 }
 
@@ -32,8 +38,10 @@ function getPath(t) {
         return "hanzi-pyramid";
     case /* SpeechRecognition */2 :
         return "speech-recognition";
+    case /* SpeechSynthesis */3 :
+        return "speech-synthesis";
     case /* Main */0 :
-    case /* NotFound */3 :
+    case /* NotFound */4 :
         return "";
     
   }

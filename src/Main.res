@@ -14,6 +14,9 @@ let make = () =>
     <ul className="list-inside list-disc">
       <Link route=HanziPyramid> {"Hanzi pyramid"->RR.s} </Link>
       <Link route=SpeechRecognition> {"Speech recognition"->RR.s} </Link>
-      <li> {"Chengyu quiz"->RR.s} </li>
+      <Link route=SpeechSynthesis> {"Speech synthesis"->RR.s} </Link>
+      <li> {"Time talk"->RR.s} </li>
+      <li> {"Music player"->RR.s} </li>
+      <li> {"Vocab quiz"->RR.s} </li>
     </ul>
   </div>

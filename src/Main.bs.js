@@ -28,7 +28,10 @@ function Main(Props) {
                     }), React.createElement(Main$Link, {
                       route: /* SpeechRecognition */2,
                       children: RR.s("Speech recognition")
-                    }), React.createElement("li", undefined, RR.s("Chengyu quiz"))));
+                    }), React.createElement(Main$Link, {
+                      route: /* SpeechSynthesis */3,
+                      children: RR.s("Speech synthesis")
+                    }), React.createElement("li", undefined, RR.s("Time talk")), React.createElement("li", undefined, RR.s("Music player")), React.createElement("li", undefined, RR.s("Vocab quiz"))));
 }
 
 var make = Main;
