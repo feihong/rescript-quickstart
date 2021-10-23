@@ -45,6 +45,7 @@ let make = (~value: 'a, ~isEqual: ('a, 'a) => bool, ~onChange: 'a => unit, ~chil
   }
 
   <select
+    className="form-select"
     value=?label
     onChange={evt => {
       let label = ReactEvent.Form.target(evt)["value"]

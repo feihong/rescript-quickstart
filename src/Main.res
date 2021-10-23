@@ -9,7 +9,7 @@ module Link = {
 @react.component
 let make = () =>
   <div>
-    <h1 className="text-4xl"> {"Feihong's RescriptReact Quickstart"->RR.s} </h1>
+    <H1> {"Feihong's RescriptReact Quickstart"->RR.s} </H1>
     <p className="mb-4"> {`欢迎你来看我的示范！`->RR.s} </p>
     <ul className="list-inside list-disc">
       <Link route=HanziPyramid> {"Hanzi pyramid"->RR.s} </Link>

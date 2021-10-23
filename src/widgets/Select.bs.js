@@ -38,6 +38,7 @@ function Select(Props) {
           return item.label;
         }));
   var tmp = {
+    className: "form-select",
     onChange: (function (evt) {
         var label = evt.target.value;
         var $$break = false;

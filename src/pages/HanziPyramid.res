@@ -20,7 +20,7 @@ let make = () => {
   }, [count])
 
   <div className="flex flex-col items-center space-y-4">
-    <h1 className="text-4xl"> {"Hanzi pyramid"->RR.s} </h1>
+    <H1> {"Hanzi pyramid"->RR.s} </H1>
     <div className="space-x-2">
       <input
         className="w-12"

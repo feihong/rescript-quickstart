@@ -8,12 +8,14 @@ type fruit =
 
 @react.component
 let make = () => {
-  <div>
+  <div className="space-y-4">
+    <H1> {"Widgets Demo"->RR.s} </H1>
     <div>
       <div> {"Select"->RR.s} </div>
       {
         let (value, setValue) = React.useState(() => Avocado)
-        <>
+        <div>
+          <div> {`Current value: ${value->fruitToJs->string_of_int}`->RR.s} </div>
           <Select value isEqual={(a, b) => a == b} onChange={v => setValue(_ => v)}>
             <Select.Item label="Avocado" value=Avocado />
             <Select.Item label="Banana" value=Banana />
@@ -21,8 +23,7 @@ let make = () => {
             <Select.Item label="Orange" value=Orange />
             <Select.Item label="Watermelon" value=Watermelon />
           </Select>
-          <div> {`Current value: ${value->fruitToJs->string_of_int}`->RR.s} </div>
-        </>
+        </div>
       }
     </div>
   </div>
