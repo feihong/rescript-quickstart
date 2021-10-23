@@ -1,21 +1,17 @@
 module Speech = {
-  type speechSynthesis
   type utterance
   type voice = {name: string, lang: string}
 
-  @val @scope("window") external synth: speechSynthesis = "speechSynthesis"
+  @scope("speechSynthesis") @val external getVoices: unit => array<voice> = "getVoices"
+  let voices = getVoices()
 
-  @send external getVoices: speechSynthesis => array<voice> = "getVoices"
+  @scope("speechSynthesis") @val external speak: utterance => unit = "speak"
 
-  let voices = synth->getVoices
+  @scope("speechSynthesis") @val external cancel: unit => unit = "cancel"
 
   @new external makeUtterance: string => utterance = "SpeechSynthesisUtterance"
 
   @set external setVoice: (utterance, voice) => unit = "voice"
-
-  @send external speak': (speechSynthesis, utterance) => unit = "speak"
-
-  let speak = utterance => synth->speak'(utterance)
 }
 
 let litany = `I must not fear.
@@ -41,6 +37,7 @@ let make = () => {
     </Select>
     <Button
       onClick={_ => {
+        Speech.cancel()
         let utterance = Speech.makeUtterance(text)
         utterance->Speech.setVoice(voice)
         utterance->Speech.speak

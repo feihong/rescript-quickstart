@@ -7,16 +7,10 @@ import * as React from "react";
 import * as Button from "../widgets/Button.bs.js";
 import * as Select from "../widgets/Select.bs.js";
 
-var voices = window.speechSynthesis.getVoices();
-
-function speak(utterance) {
-  window.speechSynthesis.speak(utterance);
-  
-}
+var voices = speechSynthesis.getVoices();
 
 var Speech = {
-  voices: voices,
-  speak: speak
+  voices: voices
 };
 
 var litany = "I must not fear.\nFear is the mind-killer.\nFear is the little-death that brings total obliteration.\nI will face my fear.\nI will permit it to pass over me and through me.\nAnd when it has gone past, I will turn the inner eye to see its path.\nWhere the fear has gone there will be nothing. Only I will remain.";
@@ -51,9 +45,10 @@ function SpeechSynthesis(Props) {
                       })
                 }), React.createElement(Button.make, {
                   onClick: (function (param) {
+                      speechSynthesis.cancel();
                       var utterance = new SpeechSynthesisUtterance(text);
                       utterance.voice = voice;
-                      window.speechSynthesis.speak(utterance);
+                      speechSynthesis.speak(utterance);
                       
                     }),
                   children: RR.s("Speak")
