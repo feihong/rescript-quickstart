@@ -12,7 +12,7 @@ let make = () => {
   let (lines, setLines) = RR.useState(() => getHanziLines(initCount))
 
   let generate = () =>
-    setLines(_ => count->int_of_string_opt->Belt.Option.getWithDefault(1)->getHanziLines)
+    setLines(_ => count->int_of_string_opt->Option.getWithDefault(1)->getHanziLines)
 
   <div>
     <h1 className="text-4xl"> {"Hanzi pyramid"->RR.s} </h1>

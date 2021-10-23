@@ -12,42 +12,58 @@ var litany = "I must not fear.\nFear is the mind-killer.\nFear is the little-dea
 
 function SpeechSynthesisDemo(Props) {
   var match = React.useState(function () {
-        return $$Array.getExn(SpeechSynthesis.voices, 0);
+        return [];
       });
-  var setVoice = match[1];
-  var voice = match[0];
+  var setVoices = match[1];
   var match$1 = React.useState(function () {
+        
+      });
+  var setVoice = match$1[1];
+  var voice = match$1[0];
+  var match$2 = React.useState(function () {
         return litany;
       });
-  var setText = match$1[1];
-  var text = match$1[0];
-  return React.createElement("div", undefined, React.createElement(Select.make, {
-                  value: voice,
-                  isEqual: (function (a, b) {
-                      return a.name === b.name;
-                    }),
-                  onChange: (function (v) {
-                      return Curry._1(setVoice, (function (param) {
-                                    return v;
-                                  }));
-                    }),
-                  children: SpeechSynthesis.voices.map(function (voice) {
-                        return React.createElement(Select.Item.make, {
-                                    label: voice.name + " (" + voice.lang + ")",
-                                    value: voice,
-                                    key: voice.name
-                                  });
-                      })
-                }), React.createElement(Button.make, {
-                  onClick: (function (param) {
-                      speechSynthesis.cancel();
-                      var utterance = new SpeechSynthesisUtterance(text);
-                      utterance.voice = voice;
-                      speechSynthesis.speak(utterance);
-                      
-                    }),
-                  children: RR.s("Speak")
-                }), React.createElement("div", undefined, React.createElement("textarea", {
+  var setText = match$2[1];
+  var text = match$2[0];
+  React.useEffect((function () {
+          SpeechSynthesis.onVoicesReady(function (voices) {
+                Curry._1(setVoices, (function (param) {
+                        return voices;
+                      }));
+                return Curry._1(setVoice, (function (param) {
+                              return $$Array.get(voices, 0);
+                            }));
+              });
+          
+        }), []);
+  return React.createElement("div", undefined, voice !== undefined ? React.createElement(React.Fragment, undefined, React.createElement(Select.make, {
+                        value: voice,
+                        isEqual: (function (a, b) {
+                            return a.name === b.name;
+                          }),
+                        onChange: (function (v) {
+                            console.log(v);
+                            return Curry._1(setVoice, (function (param) {
+                                          return v;
+                                        }));
+                          }),
+                        children: match[0].map(function (voice) {
+                              return React.createElement(Select.Item.make, {
+                                          label: voice.name + " (" + voice.lang + ")",
+                                          value: voice,
+                                          key: voice.name
+                                        });
+                            })
+                      }), React.createElement(Button.make, {
+                        onClick: (function (param) {
+                            speechSynthesis.cancel();
+                            var utterance = new SpeechSynthesisUtterance(text);
+                            utterance.voice = voice;
+                            speechSynthesis.speak(utterance);
+                            
+                          }),
+                        children: RR.s("Speak")
+                      })) : RR.s("No voices"), React.createElement("div", undefined, React.createElement("textarea", {
                       cols: 60,
                       rows: 7,
                       value: text,

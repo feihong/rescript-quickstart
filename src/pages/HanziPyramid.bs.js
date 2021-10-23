@@ -4,9 +4,9 @@ import * as RR from "../utils/RR.bs.js";
 import * as $$Array from "../utils/Array.bs.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
+import * as $$Option from "../utils/Option.bs.js";
 import * as Js_math from "rescript/lib/es6/js_math.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
-import * as Belt_Option from "rescript/lib/es6/belt_Option.js";
 
 function getRandomHanzi(count) {
   return $$Array.makeBy(count, (function (_i) {
@@ -30,7 +30,7 @@ function HanziPyramid(Props) {
   var setLines = match$1[1];
   var generate = function (param) {
     return Curry._1(setLines, (function (param) {
-                  var count$1 = Belt_Option.getWithDefault(Pervasives.int_of_string_opt(count), 1);
+                  var count$1 = $$Option.getWithDefault(Pervasives.int_of_string_opt(count), 1);
                   return $$Array.makeBy(count$1, getRandomHanzi);
                 }));
   };

@@ -10,26 +10,46 @@ Where the fear has gone there will be nothing. Only I will remain.`
 
 @react.component
 let make = () => {
-  let (voice, setVoice) = React.useState(() => Speech.voices->Array.getExn(0))
+  let (voices, setVoices) = React.useState(() => [])
+  let (voice, setVoice) = React.useState(() => None)
   let (text, setText) = React.useState(() => litany)
 
+  React.useEffect0(() => {
+    Speech.onVoicesReady(voices => {
+      setVoices(_ => voices)
+      setVoice(_ => voices->Array.get(0))
+    })
+    None
+  })
+
   <div>
-    <Select value=voice isEqual={(a, b) => a.name == b.name} onChange={v => setVoice(_ => v)}>
-      {Speech.voices
-      ->Array.map(voice =>
-        <Select.Item key=voice.name label={`${voice.name} (${voice.lang})`} value=voice />
-      )
-      ->RR.array}
-    </Select>
-    <Button
-      onClick={_ => {
-        Speech.cancel()
-        let utterance = Speech.makeUtterance(text)
-        utterance->Speech.setVoice(voice)
-        utterance->Speech.speak
-      }}>
-      {"Speak"->RR.s}
-    </Button>
+    {switch voice {
+    | None => "No voices"->RR.s
+    | Some(voice) => <>
+        <Select
+          value=voice
+          isEqual={(a, b) => a.name == b.name}
+          onChange={v => {
+            Js.log(v)
+            setVoice(_ => Some(v))
+          }}>
+          {voices
+          ->Array.map(voice =>
+            <Select.Item key=voice.name label={`${voice.name} (${voice.lang})`} value=voice />
+          )
+          ->RR.array}
+        </Select>
+        <Button
+          onClick={_ => {
+            Speech.cancel()
+            let utterance = Speech.makeUtterance(text)
+            utterance->Speech.setVoice(voice)
+            utterance->Speech.speak
+          }}>
+          {"Speak"->RR.s}
+        </Button>
+      </>
+    }}
     <div>
       <textarea
         rows=7
