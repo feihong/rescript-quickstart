@@ -3,7 +3,7 @@ let getRandomHanzi = count =>
     Js.Math.random_int(0x4e00, 0x9fff + 1)->Js.String2.fromCharCode
   )->Array.joinWith("")
 
-let getHanziLines = count => Array.makeBy(count, i => getRandomHanzi(i))
+let getHanziLines = count => Array.makeBy(count, i => getRandomHanzi(i + 1))
 
 @react.component
 let make = () => {
@@ -14,13 +14,18 @@ let make = () => {
   let generate = () =>
     setLines(_ => count->int_of_string_opt->Option.getWithDefault(1)->getHanziLines)
 
-  <div>
+  React.useEffect1(() => {
+    generate()
+    None
+  }, [count])
+
+  <div className="flex flex-col items-center space-y-4">
     <h1 className="text-4xl"> {"Hanzi pyramid"->RR.s} </h1>
-    <div>
+    <div className="space-x-2">
       <input
-        placeholder="Number of characters"
+        className="w-12"
+        autoFocus=true
         type_="number"
-        className="border-black"
         value={count}
         onChange={evt => setCount(_ => ReactEvent.Form.target(evt)["value"])}
         onKeyPress={evt =>
@@ -28,15 +33,14 @@ let make = () => {
             generate()
           }}
       />
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white rounded p-1" onClick={_ => generate()}>
-        {"Generate"->RR.s}
-      </button>
+      <Button onClick={_ => generate()}> {"Generate"->RR.s} </Button>
     </div>
-    {lines
-    ->Array.mapWithIndex((i, line) =>
-      <p key={i->string_of_int} className="text-3xl"> {line->RR.s} </p>
-    )
-    ->RR.array}
+    <div className="text-center">
+      {lines
+      ->Array.mapWithIndex((i, line) =>
+        <p key={i->string_of_int} className="text-3xl"> {line->RR.s} </p>
+      )
+      ->RR.array}
+    </div>
   </div>
 }

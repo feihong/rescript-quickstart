@@ -20,7 +20,9 @@ var Link = {
 function Main(Props) {
   return React.createElement("div", undefined, React.createElement("h1", {
                   className: "text-4xl"
-                }, RR.s("Feihong's RescriptReact Quickstart")), React.createElement("p", undefined, RR.s("欢迎你来看我的示范！")), React.createElement("ul", {
+                }, RR.s("Feihong's RescriptReact Quickstart")), React.createElement("p", {
+                  className: "mb-4"
+                }, RR.s("欢迎你来看我的示范！")), React.createElement("ul", {
                   className: "list-inside list-disc"
                 }, React.createElement(Main$Link, {
                       route: /* HanziPyramid */1,

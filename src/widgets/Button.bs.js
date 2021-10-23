@@ -6,7 +6,7 @@ function Button(Props) {
   var onClick = Props.onClick;
   var children = Props.children;
   return React.createElement("button", {
-              className: "bg-blue-500 hover:bg-blue-700 text-white rounded p-1",
+              className: "bg-blue-500 hover:bg-blue-700 text-white rounded px-2 py-1",
               onClick: onClick
             }, children);
 }

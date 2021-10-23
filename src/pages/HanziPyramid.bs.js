@@ -4,6 +4,7 @@ import * as RR from "../utils/RR.bs.js";
 import * as $$Array from "../utils/Array.bs.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
+import * as Button from "../widgets/Button.bs.js";
 import * as $$Option from "../utils/Option.bs.js";
 import * as Js_math from "rescript/lib/es6/js_math.js";
 import * as Pervasives from "rescript/lib/es6/pervasives.js";
@@ -15,7 +16,9 @@ function getRandomHanzi(count) {
 }
 
 function getHanziLines(count) {
-  return $$Array.makeBy(count, getRandomHanzi);
+  return $$Array.makeBy(count, (function (i) {
+                return getRandomHanzi(i + 1 | 0);
+              }));
 }
 
 function HanziPyramid(Props) {
@@ -25,20 +28,27 @@ function HanziPyramid(Props) {
   var setCount = match[1];
   var count = match[0];
   var match$1 = React.useState(function () {
-        return $$Array.makeBy(8, getRandomHanzi);
+        return getHanziLines(8);
       });
   var setLines = match$1[1];
   var generate = function (param) {
     return Curry._1(setLines, (function (param) {
-                  var count$1 = $$Option.getWithDefault(Pervasives.int_of_string_opt(count), 1);
-                  return $$Array.makeBy(count$1, getRandomHanzi);
+                  return getHanziLines($$Option.getWithDefault(Pervasives.int_of_string_opt(count), 1));
                 }));
   };
-  return React.createElement("div", undefined, React.createElement("h1", {
+  React.useEffect((function () {
+          generate(undefined);
+          
+        }), [count]);
+  return React.createElement("div", {
+              className: "flex flex-col items-center space-y-4"
+            }, React.createElement("h1", {
                   className: "text-4xl"
-                }, RR.s("Hanzi pyramid")), React.createElement("div", undefined, React.createElement("input", {
-                      className: "border-black",
-                      placeholder: "Number of characters",
+                }, RR.s("Hanzi pyramid")), React.createElement("div", {
+                  className: "space-x-2"
+                }, React.createElement("input", {
+                      className: "w-12",
+                      autoFocus: true,
                       type: "number",
                       value: count,
                       onKeyPress: (function (evt) {
@@ -52,17 +62,19 @@ function HanziPyramid(Props) {
                                         return evt.target.value;
                                       }));
                         })
-                    }), React.createElement("button", {
-                      className: "bg-blue-500 hover:bg-blue-700 text-white rounded p-1",
+                    }), React.createElement(Button.make, {
                       onClick: (function (param) {
                           return generate(undefined);
-                        })
-                    }, RR.s("Generate"))), $$Array.mapWithIndex(match$1[0], (function (i, line) {
-                    return React.createElement("p", {
-                                key: String(i),
-                                className: "text-3xl"
-                              }, RR.s(line));
-                  })));
+                        }),
+                      children: RR.s("Generate")
+                    })), React.createElement("div", {
+                  className: "text-center"
+                }, $$Array.mapWithIndex(match$1[0], (function (i, line) {
+                        return React.createElement("p", {
+                                    key: String(i),
+                                    className: "text-3xl"
+                                  }, RR.s(line));
+                      }))));
 }
 
 var make = HanziPyramid;
