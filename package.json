@@ -14,6 +14,7 @@
     "react-dom": "^17.0.2"
   },
   "scripts": {
+    "clean": "rescript clean",
     "re:build": "rescript",
     "re:start": "rescript build -w",
     "parcel:start": "parcel index.html",

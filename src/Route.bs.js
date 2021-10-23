@@ -5,14 +5,24 @@ import * as RescriptReactRouter from "@rescript/react/src/RescriptReactRouter.bs
 function useRoute(param) {
   var url = RescriptReactRouter.useUrl(undefined, undefined);
   var match = url.path;
-  if (match) {
-    if (match.hd === "hanzi-pyramid" && !match.tl) {
-      return /* HanziPyramid */1;
-    } else {
-      return /* NotFound */2;
-    }
-  } else {
+  if (!match) {
     return /* Main */0;
+  }
+  switch (match.hd) {
+    case "hanzi-pyramid" :
+        if (match.tl) {
+          return /* NotFound */3;
+        } else {
+          return /* HanziPyramid */1;
+        }
+    case "speech-recognition" :
+        if (match.tl) {
+          return /* NotFound */3;
+        } else {
+          return /* SpeechRecognition */2;
+        }
+    default:
+      return /* NotFound */3;
   }
 }
 
@@ -20,8 +30,10 @@ function getPath(t) {
   switch (t) {
     case /* HanziPyramid */1 :
         return "hanzi-pyramid";
+    case /* SpeechRecognition */2 :
+        return "speech-recognition";
     case /* Main */0 :
-    case /* NotFound */2 :
+    case /* NotFound */3 :
         return "";
     
   }

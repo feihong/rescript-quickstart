@@ -25,7 +25,10 @@ function Main(Props) {
                 }, React.createElement(Main$Link, {
                       route: /* HanziPyramid */1,
                       children: RR.s("Hanzi pyramid")
-                    }), React.createElement("li", undefined, RR.s("Speech recognition")), React.createElement("li", undefined, RR.s("Chengyu quiz"))));
+                    }), React.createElement(Main$Link, {
+                      route: /* SpeechRecognition */2,
+                      children: RR.s("Speech recognition")
+                    }), React.createElement("li", undefined, RR.s("Chengyu quiz"))));
 }
 
 var make = Main;

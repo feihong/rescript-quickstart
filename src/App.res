@@ -6,6 +6,7 @@ let make = () => {
     {switch route {
     | Main => <Main />
     | HanziPyramid => <HanziPyramid />
+    | SpeechRecognition => <SpeechRecognition />
     | NotFound => <NotFound />
     }}
   </div>

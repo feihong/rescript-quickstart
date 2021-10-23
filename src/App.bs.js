@@ -5,6 +5,7 @@ import * as Route from "./Route.bs.js";
 import * as React from "react";
 import * as NotFound from "./NotFound.bs.js";
 import * as HanziPyramid from "./HanziPyramid.bs.js";
+import * as SpeechRecognition from "./SpeechRecognition.bs.js";
 
 function App(Props) {
   var route = Route.useRoute(undefined);
@@ -16,7 +17,10 @@ function App(Props) {
     case /* HanziPyramid */1 :
         tmp = React.createElement(HanziPyramid.make, {});
         break;
-    case /* NotFound */2 :
+    case /* SpeechRecognition */2 :
+        tmp = React.createElement(SpeechRecognition.make, {});
+        break;
+    case /* NotFound */3 :
         tmp = React.createElement(NotFound.make, {});
         break;
     
