@@ -13,6 +13,7 @@ let make = () =>
     <p> {`欢迎你来看我的示范！`->RR.s} </p>
     <ul className="list-inside list-disc">
       <Link route=HanziPyramid> {"Hanzi pyramid"->RR.s} </Link>
+      <Link route=WidgetsDemo> {"Widgets demo"->RR.s} </Link>
       <Link route=SpeechRecognition> {"Speech recognition"->RR.s} </Link>
       <Link route=SpeechSynthesis> {"Speech synthesis"->RR.s} </Link>
       <li> {"Time talk"->RR.s} </li>

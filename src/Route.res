@@ -3,6 +3,7 @@ type t =
   | HanziPyramid
   | SpeechRecognition
   | SpeechSynthesis
+  | WidgetsDemo
   | NotFound
 
 let useRoute = () => {
@@ -13,6 +14,7 @@ let useRoute = () => {
   | list{"hanzi-pyramid"} => HanziPyramid
   | list{"speech-recognition"} => SpeechRecognition
   | list{"speech-synthesis"} => SpeechSynthesis
+  | list{"widgets"} => WidgetsDemo
   | _ => NotFound
   }
 }
@@ -23,5 +25,6 @@ let getPath = t =>
   | HanziPyramid => "hanzi-pyramid"
   | SpeechRecognition => "speech-recognition"
   | SpeechSynthesis => "speech-synthesis"
+  | WidgetsDemo => "widgets"
   | _ => ""
   }

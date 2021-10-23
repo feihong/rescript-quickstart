@@ -26,6 +26,9 @@ function Main(Props) {
                       route: /* HanziPyramid */1,
                       children: RR.s("Hanzi pyramid")
                     }), React.createElement(Main$Link, {
+                      route: /* WidgetsDemo */4,
+                      children: RR.s("Widgets demo")
+                    }), React.createElement(Main$Link, {
                       route: /* SpeechRecognition */2,
                       children: RR.s("Speech recognition")
                     }), React.createElement(Main$Link, {
