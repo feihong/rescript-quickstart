@@ -1,0 +1,3 @@
+- [ ] Set up better tailwind configuration
+- [ ] Add server
+- [ ] Fix styles

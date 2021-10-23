@@ -6,8 +6,8 @@ let make = () => {
     {switch route {
     | Main => <Main />
     | HanziPyramid => <HanziPyramid />
-    | SpeechRecognition => <SpeechRecognition />
-    | SpeechSynthesis => <SpeechSynthesis />
+    | SpeechRecognition => <SpeechRecognitionDemo />
+    | SpeechSynthesis => <SpeechSynthesisDemo />
     | WidgetsDemo => <WidgetsDemo />
     | NotFound => <NotFound />
     }}

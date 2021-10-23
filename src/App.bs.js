@@ -6,8 +6,8 @@ import * as React from "react";
 import * as NotFound from "./pages/NotFound.bs.js";
 import * as WidgetsDemo from "./pages/WidgetsDemo.bs.js";
 import * as HanziPyramid from "./pages/HanziPyramid.bs.js";
-import * as SpeechSynthesis from "./pages/SpeechSynthesis.bs.js";
-import * as SpeechRecognition from "./pages/SpeechRecognition.bs.js";
+import * as SpeechSynthesisDemo from "./pages/SpeechSynthesisDemo.bs.js";
+import * as SpeechRecognitionDemo from "./pages/SpeechRecognitionDemo.bs.js";
 
 function App(Props) {
   var route = Route.useRoute(undefined);
@@ -20,10 +20,10 @@ function App(Props) {
         tmp = React.createElement(HanziPyramid.make, {});
         break;
     case /* SpeechRecognition */2 :
-        tmp = React.createElement(SpeechRecognition.make, {});
+        tmp = React.createElement(SpeechRecognitionDemo.make, {});
         break;
     case /* SpeechSynthesis */3 :
-        tmp = React.createElement(SpeechSynthesis.make, {});
+        tmp = React.createElement(SpeechSynthesisDemo.make, {});
         break;
     case /* WidgetsDemo */4 :
         tmp = React.createElement(WidgetsDemo.make, {});

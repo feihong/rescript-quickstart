@@ -1,3 +1,5 @@
+// Note: This widget is not very type safe
+
 type props<'a> = {
   label: option<string>,
   value: option<'a>,
