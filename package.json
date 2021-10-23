@@ -1,0 +1,22 @@
+{
+  "name": "rescript-quickstart",
+  "version": "0.0.1",
+  "repository": "git@github.com:feihong/rescript-quickstart",
+  "license": "MIT",
+  "devDependencies": {
+    "@rescript/react": "^0.10.3",
+    "npm-run-all": "^4.1.5",
+    "parcel": "^2.0.0",
+    "rescript": "^9.1.4"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "scripts": {
+    "re:build": "rescript",
+    "re:start": "rescript build -w",
+    "parcel:start": "parcel index.html",
+    "start": "run-p re:start parcel:start"
+  }
+}
