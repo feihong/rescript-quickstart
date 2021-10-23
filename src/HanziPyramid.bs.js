@@ -14,6 +14,10 @@ function getRandomHanzi(count) {
                 })).join("");
 }
 
+function getHanziLines(count) {
+  return $$Array.makeBy(count, getRandomHanzi);
+}
+
 function HanziPyramid(Props) {
   var match = React.useState(function () {
         return String(8);
@@ -21,9 +25,15 @@ function HanziPyramid(Props) {
   var setCount = match[1];
   var count = match[0];
   var match$1 = React.useState(function () {
-        return getRandomHanzi(8);
+        return $$Array.makeBy(8, getRandomHanzi);
       });
-  var setValue = match$1[1];
+  var setLines = match$1[1];
+  var generate = function (param) {
+    return Curry._1(setLines, (function (param) {
+                  var count$1 = Belt_Option.getWithDefault(Pervasives.int_of_string_opt(count), 1);
+                  return $$Array.makeBy(count$1, getRandomHanzi);
+                }));
+  };
   return React.createElement("div", undefined, React.createElement("h1", {
                   className: "text-4xl"
                 }, RR.s("Hanzi pyramid")), React.createElement("div", undefined, React.createElement("input", {
@@ -31,6 +41,12 @@ function HanziPyramid(Props) {
                       placeholder: "Number of characters",
                       type: "number",
                       value: count,
+                      onKeyPress: (function (evt) {
+                          if (evt.key === "Enter") {
+                            return generate(undefined);
+                          }
+                          
+                        }),
                       onChange: (function (evt) {
                           return Curry._1(setCount, (function (param) {
                                         return evt.target.value;
@@ -39,19 +55,20 @@ function HanziPyramid(Props) {
                     }), React.createElement("button", {
                       className: "bg-blue-500 hover:bg-blue-700 text-white rounded p-1",
                       onClick: (function (param) {
-                          return Curry._1(setValue, (function (param) {
-                                        return getRandomHanzi(Belt_Option.getWithDefault(Pervasives.int_of_string_opt(count), 1));
-                                      }));
+                          return generate(undefined);
                         })
-                    }, RR.s("Generate"))), React.createElement("p", {
-                  className: "text-3xl"
-                }, RR.s(match$1[0])));
+                    }, RR.s("Generate"))), match$1[0].map(function (line) {
+                  return React.createElement("p", {
+                              className: "text-3xl"
+                            }, RR.s(line));
+                }));
 }
 
 var make = HanziPyramid;
 
 export {
   getRandomHanzi ,
+  getHanziLines ,
   make ,
   
 }
