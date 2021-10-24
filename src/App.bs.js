@@ -34,7 +34,7 @@ function App(Props) {
     
   }
   return React.createElement("div", {
-              className: "p-4"
+              className: "p-4 h-full"
             }, tmp);
 }
 

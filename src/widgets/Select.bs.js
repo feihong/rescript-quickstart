@@ -5,7 +5,7 @@ import * as $$Array from "../utils/Array.bs.js";
 import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as $$Option from "../utils/Option.bs.js";
-import * as $$String from "rescript/lib/es6/string.js";
+import * as $$String from "../utils/String.bs.js";
 import * as Caml_option from "rescript/lib/es6/caml_option.js";
 
 function Select$Item(Props) {

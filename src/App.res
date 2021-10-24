@@ -2,7 +2,7 @@
 let make = () => {
   let route = Route.useRoute()
 
-  <div className="p-4">
+  <div className="p-4 h-full">
     {switch route {
     | Main => <Main />
     | HanziPyramid => <HanziPyramid />

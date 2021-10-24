@@ -3,5 +3,9 @@
 - [x] Use tailwind forms plugin
 - [ ] Fix styles
 - [ ] Migrate SpeechRecognitionDemo to ReScript
-- [ ] Replace npm-run-all with shell command
+- [ ] Replace package.json script section with Makefile
+- [ ] Game of life
+- [ ] Eliza
+- [ ] Programs from Mazes for Programmers
+- [ ] Programs from Land of Lisp
 - [ ] Add server
