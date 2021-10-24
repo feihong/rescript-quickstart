@@ -2,23 +2,22 @@ import React, { useState } from 'react'
 
 const SpeechRecognition = window.webkitSpeechRecognition || null
 
-function getRecognizer(onResult) {
+function makeRecognizer(lang, onResult) {
   if (!SpeechRecognition) return null
 
   const recognition = new SpeechRecognition()
-  recognition.lang = 'zh-CN'
-  recognition.onresult = onResult
-
+  recognition.lang = lang
+  recognition.onresult = evt => {
+    console.log(evt.results)
+    onResult(evt.results[0][0])
+  }
   return recognition
 }
 
 export default function () {
   const [result, setResult] = useState(null)
 
-  let recognition = getRecognizer(evt => {
-      console.log(evt.results)
-      setResult(evt.results[0][0])
-    })
+  let recognition = makeRecognizer('zh-CN', result => setResult(result))
 
   return <div> {recognition === null
     ? "Speech recognition is not supported on this browser"

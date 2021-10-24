@@ -1,3 +1,6 @@
+- [ ] Migrate SpeechRecognitionDemo to ReScript
+- [ ] Migrate away from parcel
 - [ ] Set up better tailwind configuration
+- [ ] Replace npm-run-all with shell command
 - [ ] Add server
 - [ ] Fix styles
