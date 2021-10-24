@@ -20,7 +20,7 @@ var Link = {
 
 function Main(Props) {
   return React.createElement("div", undefined, React.createElement(H1.make, {
-                  children: RR.s("Feihong's RescriptReact Quickstart")
+                  children: RR.s("Feihong's ReScript Quickstart")
                 }), React.createElement("p", {
                   className: "mb-4"
                 }, RR.s("欢迎你来看我的示范！")), React.createElement("ul", {
@@ -32,11 +32,11 @@ function Main(Props) {
                       route: /* WidgetsDemo */4,
                       children: RR.s("Widgets demo")
                     }), React.createElement(Main$Link, {
-                      route: /* SpeechRecognition */2,
-                      children: RR.s("Speech recognition")
-                    }), React.createElement(Main$Link, {
                       route: /* SpeechSynthesis */3,
                       children: RR.s("Speech synthesis")
+                    }), React.createElement(Main$Link, {
+                      route: /* SpeechRecognition */2,
+                      children: RR.s("Speech recognition (JS)")
                     }), React.createElement("li", undefined, RR.s("Time talk")), React.createElement("li", undefined, RR.s("Music player")), React.createElement("li", undefined, RR.s("Vocab quiz"))));
 }
 

@@ -23,6 +23,7 @@ let make = () => {
     <H1> {"Hanzi pyramid"->RR.s} </H1>
     <div className="space-x-2">
       <input
+        style={ReactDOM.Style.make(~width="5em", ())}
         autoFocus=true
         type_="number"
         value={count}

@@ -1,9 +1,14 @@
 - [x] Migrate from parcel to vite
 - [x] Replace tailwind.min.css with proper tailwind configuration
 - [x] Use tailwind forms plugin
+- [ ] Add pitch and rate to speech synthesis demo
 - [ ] Fix styles
 - [ ] Emoji pyramid
 - [ ] Migrate SpeechRecognitionDemo to ReScript
-- [ ] Replace npm-run-all with shell command
+- [ ] Replace package.json script section with Makefile
+- [ ] Game of life
+- [ ] Eliza
+- [ ] Programs from Mazes for Programmers
+- [ ] Programs from Land of Lisp
 - [ ] Add server
 - [ ] Read tailwind book

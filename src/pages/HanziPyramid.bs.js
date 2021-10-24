@@ -48,6 +48,9 @@ function HanziPyramid(Props) {
                 }), React.createElement("div", {
                   className: "space-x-2"
                 }, React.createElement("input", {
+                      style: {
+                        width: "5em"
+                      },
                       autoFocus: true,
                       type: "number",
                       value: count,

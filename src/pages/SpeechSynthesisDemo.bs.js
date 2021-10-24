@@ -7,42 +7,42 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Button from "../widgets/Button.bs.js";
 import * as Select from "../widgets/Select.bs.js";
+import * as $$String from "../utils/String.bs.js";
+import * as Belt_SortArray from "rescript/lib/es6/belt_SortArray.js";
 import * as SpeechSynthesis from "../utils/SpeechSynthesis.bs.js";
 
 var litany = "I must not fear.\nFear is the mind-killer.\nFear is the little-death that brings total obliteration.\nI will face my fear.\nI will permit it to pass over me and through me.\nAnd when it has gone past, I will turn the inner eye to see its path.\nWhere the fear has gone there will be nothing. Only I will remain.";
 
+var litanyZh = "我絕不能害怕\n\n恐懼會扼殺思維能力\n\n是潛伏的死神\n\n會徹底毀滅一個人\n\n我要容忍它\n\n讓他掠過我的心頭\n\n穿越我的心身\n\n當這一切過去之後\n\n我將睜開心靈深處的眼神\n\n審視它的軌跡\n\n恐懼如風\n\n風過無痕\n\n唯有我依然屹立";
+
 function SpeechSynthesisDemo(Props) {
-  var match = React.useState(function () {
-        return [];
-      });
+  var match = RR.useStateValue([]);
   var setVoices = match[1];
-  var match$1 = React.useState(function () {
-        
-      });
+  var match$1 = RR.useStateValue(undefined);
   var setVoice = match$1[1];
   var voice = match$1[0];
-  var match$2 = React.useState(function () {
-        return litany;
-      });
+  var match$2 = RR.useStateValue(litany);
   var setText = match$2[1];
   var text = match$2[0];
+  var match$3 = RR.useStateValue(false);
+  var setChanged = match$3[1];
+  var changed = match$3[0];
   React.useEffect((function () {
           SpeechSynthesis.onVoicesReady(function (voices) {
-                Curry._1(setVoices, (function (param) {
-                        return voices;
+                var voices$1 = Belt_SortArray.stableSortBy(voices, (function (v1, v2) {
+                        return $$String.compare(v1.lang, v2.lang);
                       }));
-                return Curry._1(setVoice, (function (param) {
-                              return $$Array.get(voices, 0);
-                            }));
+                Curry._1(setVoices, voices$1);
+                return Curry._1(setVoice, $$Array.get(voices$1, 0));
               });
           
         }), []);
   return React.createElement("div", {
-              className: "space-y-4"
+              className: "flex flex-col space-y-4 h-full"
             }, React.createElement(H1.make, {
                   children: RR.s("Speech Synthesis")
                 }), voice !== undefined ? React.createElement("div", {
-                    className: "flex flex-row space-x-4"
+                    className: "flex flex-row space-x-2"
                   }, React.createElement(Select.make, {
                         value: voice,
                         isEqual: (function (a, b) {
@@ -50,9 +50,10 @@ function SpeechSynthesisDemo(Props) {
                           }),
                         onChange: (function (v) {
                             console.log(v);
-                            return Curry._1(setVoice, (function (param) {
-                                          return v;
-                                        }));
+                            if (!changed) {
+                              Curry._1(setText, v.lang.startsWith("zh") ? litanyZh : litany);
+                            }
+                            return Curry._1(setVoice, v);
                           }),
                         children: match[0].map(function (voice) {
                               return React.createElement(Select.Item.make, {
@@ -70,16 +71,21 @@ function SpeechSynthesisDemo(Props) {
                             
                           }),
                         children: RR.s("Speak")
-                      })) : RR.s("No voices"), React.createElement("div", undefined, React.createElement("textarea", {
-                      cols: 80,
-                      rows: 7,
-                      value: text,
-                      onChange: (function (evt) {
-                          return Curry._1(setText, (function (param) {
-                                        return evt.currentTarget.value;
-                                      }));
-                        })
-                    })));
+                      }), React.createElement(Button.make, {
+                        onClick: (function (param) {
+                            speechSynthesis.cancel();
+                            
+                          }),
+                        children: RR.s("Stop")
+                      })) : RR.s("No voices"), React.createElement("textarea", {
+                  className: "flex-1",
+                  cols: 80,
+                  value: text,
+                  onChange: (function (evt) {
+                      Curry._1(setChanged, true);
+                      return Curry._1(setText, evt.currentTarget.value);
+                    })
+                }));
 }
 
 var Speech;
@@ -89,6 +95,7 @@ var make = SpeechSynthesisDemo;
 export {
   Speech ,
   litany ,
+  litanyZh ,
   make ,
   
 }

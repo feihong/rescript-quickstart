@@ -1,7 +1,6 @@
 .DS_Store
 .merlin
 .bsb.lock
-/.parcel-cache
 /lib
 /dist
 /node_modules
