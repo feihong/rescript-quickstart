@@ -6,8 +6,14 @@ import * as React from "react";
 import * as NotFound from "./pages/NotFound.bs.js";
 import * as WidgetsDemo from "./pages/WidgetsDemo.bs.js";
 import * as HanziPyramid from "./pages/HanziPyramid.bs.js";
+import SpeechJsx from "./pages/speech.jsx";
 import * as SpeechSynthesisDemo from "./pages/SpeechSynthesisDemo.bs.js";
-import * as SpeechRecognitionDemo from "./pages/SpeechRecognitionDemo.bs.js";
+
+var make = SpeechJsx;
+
+var SpeechRecognitionDemoJs = {
+  make: make
+};
 
 function App(Props) {
   var route = Route.useRoute(undefined);
@@ -20,7 +26,7 @@ function App(Props) {
         tmp = React.createElement(HanziPyramid.make, {});
         break;
     case /* SpeechRecognition */2 :
-        tmp = React.createElement(SpeechRecognitionDemo.make, {});
+        tmp = React.createElement(make, {});
         break;
     case /* SpeechSynthesis */3 :
         tmp = React.createElement(SpeechSynthesisDemo.make, {});
@@ -38,10 +44,11 @@ function App(Props) {
             }, tmp);
 }
 
-var make = App;
+var make$1 = App;
 
 export {
-  make ,
+  SpeechRecognitionDemoJs ,
+  make$1 as make,
   
 }
-/* Main Not a pure module */
+/* make Not a pure module */
