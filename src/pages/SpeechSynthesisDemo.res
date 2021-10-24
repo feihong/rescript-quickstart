@@ -22,10 +22,12 @@ let make = () => {
     None
   })
 
-  <div>
+  <div className="space-y-4">
+    <H1> {"Speech Synthesis"->RR.s} </H1>
     {switch voice {
     | None => "No voices"->RR.s
-    | Some(voice) => <>
+    | Some(voice) =>
+      <div className="flex flex-row space-x-4">
         <Select
           value=voice
           isEqual={(a, b) => a.name == b.name}
@@ -48,12 +50,12 @@ let make = () => {
           }}>
           {"Speak"->RR.s}
         </Button>
-      </>
+      </div>
     }}
     <div>
       <textarea
         rows=7
-        cols=60
+        cols=80
         value=text
         onChange={evt => setText(_ => ReactEvent.Form.currentTarget(evt)["value"])}
       />

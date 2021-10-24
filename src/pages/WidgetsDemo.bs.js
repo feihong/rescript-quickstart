@@ -30,7 +30,7 @@ function WidgetsDemo(Props) {
                 }), React.createElement("div", undefined, React.createElement("div", {
                       className: "font-bold"
                     }, RR.s("Select")), React.createElement("div", {
-                      className: "flex flex-row"
+                      className: "flex flex-row items-center"
                     }, React.createElement("div", {
                           className: "mr-6"
                         }, RR.s("Current value: " + String(value + 0 | 0))), React.createElement(Select.make, {
