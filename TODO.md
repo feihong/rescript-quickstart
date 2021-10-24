@@ -1,7 +1,9 @@
 - [x] Migrate from parcel to vite
-- [x] Repalce tailwind.min.css with proper tailwind configuration
+- [x] Replace tailwind.min.css with proper tailwind configuration
 - [x] Use tailwind forms plugin
 - [ ] Fix styles
+- [ ] Emoji pyramid
 - [ ] Migrate SpeechRecognitionDemo to ReScript
 - [ ] Replace npm-run-all with shell command
 - [ ] Add server
+- [ ] Read tailwind book
