@@ -16,6 +16,10 @@ Start Parcel and ReScript compiler in watch mode:
 
     yarn start
 
+## Notes
+
+Running Parcel and ReScript in watch mode using npm-run-all doesn't work very well. It can't be interrupted using ctrl+c on Linux, and sometimes even fails on Mac too.
+
 ## Links
 
 - [Integrate Into an Existing JS Project](https://rescript-lang.org/docs/manual/latest/installation#integrate-into-an-existing-js-project)
