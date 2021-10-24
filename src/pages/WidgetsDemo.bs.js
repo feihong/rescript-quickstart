@@ -33,7 +33,9 @@ function WidgetsDemo(Props) {
                       className: "flex flex-row items-center"
                     }, React.createElement("div", {
                           className: "mr-6"
-                        }, RR.s("Current value: " + String(value + 0 | 0))), React.createElement(Select.make, {
+                        }, React.createElement("span", {
+                              className: "font-extralight"
+                            }, RR.s("Current value: ")), RR.s(String(value + 0 | 0))), React.createElement(Select.make, {
                           value: value,
                           isEqual: (function (a, b) {
                               return a === b;

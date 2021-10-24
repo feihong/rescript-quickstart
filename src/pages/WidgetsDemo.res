@@ -15,7 +15,10 @@ let make = () => {
       {
         let (value, setValue) = React.useState(() => Avocado)
         <div className="flex flex-row items-center">
-          <div className="mr-6"> {`Current value: ${value->fruitToJs->string_of_int}`->RR.s} </div>
+          <div className="mr-6">
+            <span className="font-extralight"> {"Current value: "->RR.s} </span>
+            {value->fruitToJs->string_of_int->RR.s}
+          </div>
           <Select value isEqual={(a, b) => a == b} onChange={v => setValue(_ => v)}>
             <Select.Item label="Avocado" value=Avocado />
             <Select.Item label="Banana" value=Banana />

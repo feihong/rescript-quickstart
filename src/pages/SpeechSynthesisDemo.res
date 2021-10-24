@@ -8,16 +8,31 @@ I will permit it to pass over me and through me.
 And when it has gone past, I will turn the inner eye to see its path.
 Where the fear has gone there will be nothing. Only I will remain.`
 
+// https://www.reddit.com/r/dune/comments/a3cr0j/litany_against_fear_traditional_mandarin/
+let litanyZh = `我絕不能害怕
+恐懼會扼殺思維能力
+是潛伏的死神
+會徹底毀滅一個人
+我要容忍它
+讓他掠過我的心頭
+穿越我的心身
+當這一切過去之後
+我將睜開心靈深處的眼神
+審視它的軌跡
+恐懼如風
+風過無痕
+唯有我依然屹立`
+
 @react.component
 let make = () => {
-  let (voices, setVoices) = React.useState(() => [])
-  let (voice, setVoice) = React.useState(() => None)
-  let (text, setText) = React.useState(() => litany)
+  let (voices, setVoices) = RR.useStateValue([])
+  let (voice, setVoice) = RR.useStateValue(None)
+  let (text, setText) = RR.useStateValue(litany)
 
   React.useEffect0(() => {
     Speech.onVoicesReady(voices => {
-      setVoices(_ => voices)
-      setVoice(_ => voices->Array.get(0))
+      setVoices(voices)
+      setVoice(voices->Array.get(0))
     })
     None
   })
@@ -27,13 +42,13 @@ let make = () => {
     {switch voice {
     | None => "No voices"->RR.s
     | Some(voice) =>
-      <div className="flex flex-row space-x-4">
+      <div className="flex flex-row space-x-2">
         <Select
           value=voice
           isEqual={(a, b) => a.name == b.name}
           onChange={v => {
             Js.log(v)
-            setVoice(_ => Some(v))
+            setVoice(Some(v))
           }}>
           {voices
           ->Array.map(voice =>
@@ -50,6 +65,7 @@ let make = () => {
           }}>
           {"Speak"->RR.s}
         </Button>
+        <Button onClick={_ => Speech.cancel()}> {"Stop"->RR.s} </Button>
       </div>
     }}
     <div>
@@ -57,7 +73,7 @@ let make = () => {
         rows=7
         cols=80
         value=text
-        onChange={evt => setText(_ => ReactEvent.Form.currentTarget(evt)["value"])}
+        onChange={evt => setText(ReactEvent.Form.currentTarget(evt)["value"])}
       />
     </div>
   </div>
