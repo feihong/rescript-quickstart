@@ -27,7 +27,13 @@ function WidgetsDemo(Props) {
               className: "space-y-4"
             }, React.createElement(H1.make, {
                   children: RR.s("Widgets Demo")
-                }), React.createElement("div", undefined, React.createElement("div", undefined, RR.s("Select")), React.createElement("div", undefined, React.createElement("div", undefined, RR.s("Current value: " + String(value + 0 | 0))), React.createElement(Select.make, {
+                }), React.createElement("div", undefined, React.createElement("div", {
+                      className: "font-bold"
+                    }, RR.s("Select")), React.createElement("div", {
+                      className: "flex flex-row"
+                    }, React.createElement("div", {
+                          className: "mr-6"
+                        }, RR.s("Current value: " + String(value + 0 | 0))), React.createElement(Select.make, {
                           value: value,
                           isEqual: (function (a, b) {
                               return a === b;

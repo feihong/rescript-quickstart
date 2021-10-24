@@ -3,14 +3,19 @@
 import * as Curry from "rescript/lib/es6/curry.js";
 
 function onVoicesReady(callback) {
-  speechSynthesis.addEventListener("voiceschanged", (function (param) {
-          var voices = speechSynthesis.getVoices();
-          if (voices.length > 0) {
-            return Curry._1(callback, voices);
-          }
-          
-        }));
-  
+  var voices = speechSynthesis.getVoices();
+  if (voices.length > 0) {
+    return Curry._1(callback, voices);
+  } else {
+    speechSynthesis.addEventListener("voiceschanged", (function (param) {
+            var voices = speechSynthesis.getVoices();
+            if (voices.length > 0) {
+              return Curry._1(callback, voices);
+            }
+            
+          }));
+    return ;
+  }
 }
 
 export {
