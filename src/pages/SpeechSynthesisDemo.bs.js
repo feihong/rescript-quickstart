@@ -7,6 +7,7 @@ import * as Curry from "rescript/lib/es6/curry.js";
 import * as React from "react";
 import * as Button from "../widgets/Button.bs.js";
 import * as Select from "../widgets/Select.bs.js";
+import * as Slider from "../widgets/Slider.bs.js";
 import * as $$String from "../utils/String.bs.js";
 import * as Belt_SortArray from "rescript/lib/es6/belt_SortArray.js";
 import * as SpeechSynthesis from "../utils/SpeechSynthesis.bs.js";
@@ -14,6 +15,28 @@ import * as SpeechSynthesis from "../utils/SpeechSynthesis.bs.js";
 var litany = "I must not fear.\nFear is the mind-killer.\nFear is the little-death that brings total obliteration.\nI will face my fear.\nI will permit it to pass over me and through me.\nAnd when it has gone past, I will turn the inner eye to see its path.\nWhere the fear has gone there will be nothing. Only I will remain.";
 
 var litanyZh = "我絕不能害怕\n\n恐懼會扼殺思維能力\n\n是潛伏的死神\n\n會徹底毀滅一個人\n\n我要容忍它\n\n讓他掠過我的心頭\n\n穿越我的心身\n\n當這一切過去之後\n\n我將睜開心靈深處的眼神\n\n審視它的軌跡\n\n恐懼如風\n\n風過無痕\n\n唯有我依然屹立";
+
+function SpeechSynthesisDemo$LabelSlider(Props) {
+  var label = Props.label;
+  var value = Props.value;
+  var min = Props.min;
+  var max = Props.max;
+  var step = Props.step;
+  var onChange = Props.onChange;
+  return React.createElement("div", {
+              className: "flex flex-col"
+            }, RR.s(label + ": " + value.toString()), React.createElement(Slider.make, {
+                  value: value,
+                  min: min,
+                  max: max,
+                  step: step,
+                  onChange: onChange
+                }));
+}
+
+var LabelSlider = {
+  make: SpeechSynthesisDemo$LabelSlider
+};
 
 function SpeechSynthesisDemo(Props) {
   var match = RR.useStateValue([]);
@@ -27,6 +50,10 @@ function SpeechSynthesisDemo(Props) {
   var match$3 = RR.useStateValue(false);
   var setChanged = match$3[1];
   var changed = match$3[0];
+  var match$4 = RR.useStateValue(1);
+  var pitch = match$4[0];
+  var match$5 = RR.useStateValue(1);
+  var rate = match$5[0];
   React.useEffect((function () {
           SpeechSynthesis.onVoicesReady(function (voices) {
                 var voices$1 = Belt_SortArray.stableSortBy(voices, (function (v1, v2) {
@@ -67,6 +94,8 @@ function SpeechSynthesisDemo(Props) {
                             speechSynthesis.cancel();
                             var utterance = new SpeechSynthesisUtterance(text);
                             utterance.voice = voice;
+                            utterance.pitch = pitch;
+                            utterance.rate = rate;
                             speechSynthesis.speak(utterance);
                             
                           }),
@@ -77,6 +106,20 @@ function SpeechSynthesisDemo(Props) {
                             
                           }),
                         children: RR.s("Stop")
+                      }), React.createElement("div", undefined), React.createElement(SpeechSynthesisDemo$LabelSlider, {
+                        label: "Pitch",
+                        value: pitch,
+                        min: 0,
+                        max: 2,
+                        step: 0.1,
+                        onChange: match$4[1]
+                      }), React.createElement(SpeechSynthesisDemo$LabelSlider, {
+                        label: "Rate",
+                        value: rate,
+                        min: 0.1,
+                        max: 10,
+                        step: 0.1,
+                        onChange: match$5[1]
                       })) : RR.s("No voices"), React.createElement("textarea", {
                   className: "flex-1",
                   cols: 80,
@@ -96,6 +139,7 @@ export {
   Speech ,
   litany ,
   litanyZh ,
+  LabelSlider ,
   make ,
   
 }

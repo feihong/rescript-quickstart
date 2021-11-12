@@ -1,7 +1,7 @@
 - [x] Migrate from parcel to vite
 - [x] Replace tailwind.min.css with proper tailwind configuration
 - [x] Use tailwind forms plugin
-- [ ] Add pitch and rate to speech synthesis demo
+- [x] Add pitch and rate to speech synthesis demo
 - [ ] Fix styles
 - [ ] Emoji pyramid
 - [ ] Migrate SpeechRecognitionDemo to ReScript

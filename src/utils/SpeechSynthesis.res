@@ -32,3 +32,5 @@ let onVoicesReady = callback => {
 @new external makeUtterance: string => utterance = "SpeechSynthesisUtterance"
 
 @set external setVoice: (utterance, voice) => unit = "voice"
+@set external setPitch: (utterance, float) => unit = "pitch" // 0-2
+@set external setRate: (utterance, float) => unit = "rate" // 0.1-10

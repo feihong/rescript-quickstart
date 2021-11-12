@@ -35,12 +35,22 @@ let litanyZh = `我絕不能害怕
 
 唯有我依然屹立`
 
+module LabelSlider = {
+  @react.component
+  let make = (~label, ~value, ~min, ~max, ~step, ~onChange: float => unit) =>
+    <div className="flex flex-col">
+      {(label ++ ": " ++ value->Js.Float.toString)->RR.s} <Slider value min max step onChange />
+    </div>
+}
+
 @react.component
 let make = () => {
   let (voices: array<Speech.voice>, setVoices) = RR.useStateValue([])
   let (voice, setVoice) = RR.useStateValue(None)
   let (text, setText) = RR.useStateValue(litany)
   let (changed, setChanged) = RR.useStateValue(false)
+  let (pitch, setPitch) = RR.useStateValue(1.)
+  let (rate, setRate) = RR.useStateValue(1.)
 
   React.useEffect0(() => {
     Speech.onVoicesReady(voices => {
@@ -78,11 +88,16 @@ let make = () => {
             Speech.cancel()
             let utterance = Speech.makeUtterance(text)
             utterance->Speech.setVoice(voice)
+            utterance->Speech.setPitch(pitch)
+            utterance->Speech.setRate(rate)
             utterance->Speech.speak
           }}>
           {"Speak"->RR.s}
         </Button>
         <Button onClick={_ => Speech.cancel()}> {"Stop"->RR.s} </Button>
+        <div />
+        <LabelSlider label="Pitch" value=pitch min=0. max=2. step=0.1 onChange=setPitch />
+        <LabelSlider label="Rate" value=rate min=0.1 max=10. step=0.1 onChange=setRate />
       </div>
     }}
     <textarea
